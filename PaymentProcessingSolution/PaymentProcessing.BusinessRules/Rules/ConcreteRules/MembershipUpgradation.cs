@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PaymentProcessing.BusinessRules.ConcreteRules
+namespace PaymentProcessing.BusinessRules.Rules.ConcreteRules
 {
     public class MembershipUpgradation : IRule
     {

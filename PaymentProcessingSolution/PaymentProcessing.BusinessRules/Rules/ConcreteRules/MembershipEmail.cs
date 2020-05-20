@@ -7,23 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PaymentProcessing.BusinessRules.ConcreteRules
+namespace PaymentProcessing.BusinessRules.Rules.ConcreteRules
 {
-    public class DuplicatepackingSlipGeneration : IRule
+    public class MembershipEmail : IRule
     {
         private readonly Payment _payment;
-        public DuplicatepackingSlipGeneration(Payment payment)
+        public MembershipEmail(Payment payment)
         {
             _payment = payment;
         }
         public void Execute()
         {
-            Console.WriteLine("A duplicate packing slip is created for the royalty department");
+            Console.WriteLine($"Email sent to owner for {_payment.Product.Name}");
         }
 
         public bool IsApplicable()
         {
-            return _payment.Product.ProductType == ProductType.Book;
+            return _payment.Product.ProductType == ProductType.Membership;
         }
     }
 }

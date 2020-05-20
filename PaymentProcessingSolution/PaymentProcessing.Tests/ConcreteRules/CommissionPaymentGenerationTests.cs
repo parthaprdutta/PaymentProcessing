@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PaymentProcessing.BusinessRules.ConcreteRules;
 using PaymentProcessing.BusinessRules.Enums;
 using PaymentProcessing.BusinessRules.Models;
+using PaymentProcessing.BusinessRules.Rules.ConcreteRules;
 using System;
 using System.Collections.Generic;
 using System.Linq;

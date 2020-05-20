@@ -7,23 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PaymentProcessing.BusinessRules.ConcreteRules
+namespace PaymentProcessing.BusinessRules.Rules.ConcreteRules
 {
-    public class MembershipEmail : IRule
+    public class PackingSlipGenerationForShipping : IRule
     {
         private readonly Payment _payment;
-        public MembershipEmail(Payment payment)
+        public PackingSlipGenerationForShipping(Payment payment)
         {
             _payment = payment;
         }
         public void Execute()
         {
-            Console.WriteLine($"Email sent to owner for {_payment.Product.Name}");
+            Console.WriteLine("Packing slip generated for shipping.");
         }
 
         public bool IsApplicable()
         {
-            return _payment.Product.ProductType == ProductType.Membership;
+            return _payment.Product.ProductType == ProductType.Physical;
         }
     }
 }

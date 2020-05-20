@@ -8,24 +8,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PaymentProcessing.BusinessRules.ConcreteRules
+namespace PaymentProcessing.BusinessRules.Rules.ConcreteRules
 {
-    public class FreeFirstAidVideo : IRule
+    public class MembershipActivation : IRule
     {
         private readonly Payment _payment;
-        public FreeFirstAidVideo(Payment payment)
+        public MembershipActivation(Payment payment)
         {
             _payment = payment;
         }
         public void Execute()
         {
-            Console.WriteLine("Free First-Aid video added to the packing slip.");
+            Console.WriteLine("Membership activated");
         }
 
         public bool IsApplicable()
         {
-            return _payment.Product.ProductType == ProductType.Video
-                && _payment.Product.Name == Constant.LEARNING_TO_SKI;
+            return _payment.Product.ProductType == ProductType.Membership
+                && _payment.Product.Name == Constant.MEMBERSHIP_ACTIIVATION;
         }
     }
 }
