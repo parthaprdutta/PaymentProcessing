@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PaymentProcessing.BusinessRules
 {
-    public class PaymentProcessor
+    public class PaymentProcessor : IPaymentProcessor
     {
         public void Run(Payment payment)
         {

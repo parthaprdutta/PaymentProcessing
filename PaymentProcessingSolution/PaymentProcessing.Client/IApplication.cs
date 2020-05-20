@@ -2,7 +2,7 @@
 
 namespace PaymentProcessing.Client
 {
-    internal interface IApplication
+    public interface IApplication
     {
         void ProcessPayment(Payment payment);
     }

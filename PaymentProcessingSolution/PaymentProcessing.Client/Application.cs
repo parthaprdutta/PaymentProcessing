@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PaymentProcessing.Client
 {
-    public class Application
+    public class Application : IApplication
     {
         private readonly IPaymentProcessor _processor;
         public Application(IPaymentProcessor processor)
