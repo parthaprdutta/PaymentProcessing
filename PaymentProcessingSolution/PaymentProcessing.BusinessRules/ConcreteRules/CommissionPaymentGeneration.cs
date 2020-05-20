@@ -1,4 +1,6 @@
-﻿using PaymentProcessing.BusinessRules.Rules;
+﻿using PaymentProcessing.BusinessRules.Enums;
+using PaymentProcessing.BusinessRules.Models;
+using PaymentProcessing.BusinessRules.Rules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +11,20 @@ namespace PaymentProcessing.BusinessRules.ConcreteRules
 {
     public class CommissionPaymentGeneration : IRule
     {
+        private readonly Payment _payment;
+        public CommissionPaymentGeneration(Payment payment)
+        {
+            _payment = payment;
+        }
         public void Execute()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Commission payment to the agent is generated");
         }
 
         public bool IsApplicable()
         {
-            return false;
+            return _payment.Product.ProductType == ProductType.Physical
+                || _payment.Product.ProductType == ProductType.Book;
         }
     }
 }
