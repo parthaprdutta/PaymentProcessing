@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 namespace PaymentProcessing.Tests.ConcreteRules
 {
     [TestClass]
-    public class CommissionPaymentGenerationTests
+    public class PackingSlipGenerationForShippingTests
     {
         [TestMethod]
         public void IsApplicable_Success_Test()
         {
-            var payment = new Payment(new Product(1, "Microservices", BusinessRules.Enums.ProductType.Book));
+            var payment = new Payment(new Product(1, "Laptop", BusinessRules.Enums.ProductType.Physical));
             var rule = new CommissionPaymentGeneration(payment);
 
             var result = rule.IsApplicable();
@@ -23,10 +23,11 @@ namespace PaymentProcessing.Tests.ConcreteRules
             Assert.IsTrue(result);
         }
 
+
         [TestMethod]
         public void IsApplicable_Failed_Test()
         {
-            var payment = new Payment(new Product(1, "Activate", BusinessRules.Enums.ProductType.Membership));
+            var payment = new Payment(new Product(1, "Upgradation", BusinessRules.Enums.ProductType.Membership));
             var rule = new CommissionPaymentGeneration(payment);
 
             var result = rule.IsApplicable();
