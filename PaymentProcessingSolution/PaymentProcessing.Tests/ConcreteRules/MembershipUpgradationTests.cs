@@ -11,31 +11,31 @@ using System.Threading.Tasks;
 namespace PaymentProcessing.Tests.ConcreteRules
 {
     [TestClass]
-    public class PackingSlipGenerationForShippingTests
+    public class MembershipUpgradationTests
     {
         [DataTestMethod]
-        [DataRow(1, "Laptop", ProductType.Physical)]
         
-
+        [DataRow(4, "Membership upgradation", ProductType.Membership)]
         public void IsApplicable_Success_Test(int id, string productName, ProductType productType)
         {
             var payment = new Payment(new Product(id, productName, productType));
-            var rule = new PackingSlipGenerationForShipping(payment);
+            var rule = new MembershipUpgradation(payment);
 
             var result = rule.IsApplicable();
 
             Assert.IsTrue(result);
         }
 
+
         [DataTestMethod]
-        [DataRow(2, "Microservices", ProductType.Book)]
-        [DataRow(3, "Membership activation", ProductType.Membership)]
-        [DataRow(4, "Membership upgradation", ProductType.Membership)]
+        [DataRow(1, "Laptop", ProductType.Physical)]
         [DataRow(5, "Learning to Ski", ProductType.Video)]
+        [DataRow(3, "Membership activation", ProductType.Membership)]
+        [DataRow(2, "Microservices", ProductType.Book)]
         public void IsApplicable_Failed_Test(int id, string productName, ProductType productType)
         {
             var payment = new Payment(new Product(id, productName, productType));
-            var rule = new PackingSlipGenerationForShipping(payment);
+            var rule = new MembershipUpgradation(payment);
 
             var result = rule.IsApplicable();
 

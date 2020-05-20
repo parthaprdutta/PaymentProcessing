@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PaymentProcessing.BusinessRules.ConcreteRules;
+using PaymentProcessing.BusinessRules.Enums;
 using PaymentProcessing.BusinessRules.Models;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,13 @@ namespace PaymentProcessing.Tests.ConcreteRules
     [TestClass]
     public class CommissionPaymentGenerationTests
     {
-        [TestMethod]
-        public void IsApplicable_Success_Test()
+        [DataTestMethod]
+        [DataRow(1, "Laptop", ProductType.Physical)]
+        [DataRow(2, "Microservices", ProductType.Book)]
+        
+        public void IsApplicable_Success_Test(int id, string productName, ProductType productType)
         {
-            var payment = new Payment(new Product(1, "Microservices", BusinessRules.Enums.ProductType.Book));
+            var payment = new Payment(new Product(id, productName, productType));
             var rule = new CommissionPaymentGeneration(payment);
 
             var result = rule.IsApplicable();
@@ -23,10 +27,13 @@ namespace PaymentProcessing.Tests.ConcreteRules
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        public void IsApplicable_Failed_Test()
+        [DataTestMethod]
+        [DataRow(3, "Membership activation", ProductType.Membership)]
+        [DataRow(4, "Membership upgradation", ProductType.Membership)]
+        [DataRow(5, "Learning to Ski", ProductType.Video)]
+        public void IsApplicable_Failed_Test(int id, string productName, ProductType productType)
         {
-            var payment = new Payment(new Product(1, "Activate", BusinessRules.Enums.ProductType.Membership));
+            var payment = new Payment(new Product(id, productName, productType));
             var rule = new CommissionPaymentGeneration(payment);
 
             var result = rule.IsApplicable();
