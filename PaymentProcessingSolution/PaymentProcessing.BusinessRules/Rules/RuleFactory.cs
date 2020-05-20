@@ -1,4 +1,5 @@
-﻿using PaymentProcessing.BusinessRules.Models;
+﻿using Autofac;
+using PaymentProcessing.BusinessRules.Models;
 using PaymentProcessing.BusinessRules.Rules;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,14 @@ namespace PaymentProcessing.BusinessRules.Rules
     {
         public static IEnumerable<IRule> GetRules(Payment payment)
         {
-            return null;
+            var container = ContainerConfig.Configure();
+
+            using (var scope = container.BeginLifetimeScope())
+            {
+                var rules = scope.Resolve<IEnumerable<IRule>>(new TypedParameter(typeof(Payment), payment));
+
+                return rules;
+            }
         }
     }
 }
